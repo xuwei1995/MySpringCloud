@@ -1,0 +1,34 @@
+eureka:
+  client:
+    serviceUrl:
+      #      多eureka的注册中心
+      defaultZone: http://192.168.1.74:3333/eureka/,http://192.168.1.252:3333/eureka/
+server:
+  #  此项目端口号
+  port: 8883
+spring:
+  application:
+    #    注册进eureka的名字
+    name: gateway-server
+
+
+
+    #配置网关转发详情
+
+zuul:
+  routes:
+    #标识你服务的名字，这里可以自己定义，一般方便和规范来讲还是跟自己服务的名字一样
+    member-service:
+      #服务映射的路径，通过这路径就可以从外部访问你的服务了，目的是为了不爆露你机器的IP，面向服务的路由了，给你选一个可用的出来，
+      #这里zuul是自动依赖hystrix，ribbon的，不是面向单机
+      stripPrefix: false
+      path: /mem/**
+      #这里一定要是你Eureka注册中心的服务的名称，是所以这里配置serviceId因为跟eureka结合了，如果单独使用zuul,那么就必须写自己机器的IP了，
+      serviceId: member-server
+      order-service:
+        #服务映射的路径，通过这路径就可以从外部访问你的服务了，目的是为了不爆露你机器的IP，面向服务的路由了，给你选一个可用的出来，
+        #这里zuul是自动依赖hystrix，ribbon的，不是面向单机
+        path: /ord/**
+        stripPrefix: false
+        #这里一定要是你Eureka注册中心的服务的名称，是所以这里配置serviceId因为跟eureka结合了，如果单独使用zuul,那么就必须写自己机器的IP了，
+        serviceId: order-server

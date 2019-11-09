@@ -1,0 +1,15 @@
+#eureka的端口号
+server:
+  port: 3333
+eureka:
+  instance:
+    preferIpAddress : true
+    ip-address: 192.168.1.252
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://192.168.1.74:3333/eureka/
+spring:
+  application:
+    name: double-eureka-server

@@ -21,10 +21,10 @@
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
     </properties>
     <modules>
-        <module>MyEurekaDemo</module>
+        <module>myEurekaDemo</module>
         <module>gateway</module>
-        <module>MemberServer</module>
-        <module>OrderServer</module>
+        <module>memberServer</module>
+        <module>orderServer</module>
     </modules>
     <dependencies>
         <dependency>
